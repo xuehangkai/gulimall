@@ -1,0 +1,14 @@
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+    alicloud:
+      sms:
+        host: https://jumsendsms.market.alicloudapi.com
+        path: /sms/send-upgrade
+        appcode: 2e97105ba6f24524a3edcabbf26e559d
+        template-id: M72CB42894
+
+server:
+  port: 30000

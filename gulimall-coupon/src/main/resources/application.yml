@@ -1,0 +1,3 @@
+logging:
+  level:
+    com.study.gulimall.product: debug
