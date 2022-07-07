@@ -36,6 +36,7 @@ import org.springframework.util.StringUtils;
 @Service("categoryService")
 public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity> implements CategoryService {
 
+
     @Autowired
     CategoryBrandRelationService categoryBrandRelationService;
 

@@ -1,0 +1,35 @@
+docker start $(docker ps -a | awk '{ print $1}' | tail -n +2)
+docker stop $(docker ps -a | awk '{ print $1}' | tail -n +2)
+docker rm $(docker ps -a | awk '{ print $1}' | tail -n +2)
+docker rmi $(docker images | awk '{print $3}' |tail -n +2)
+
+docker run -p 3306:3306 --name mysql \
+-v /mydata/mysql/log:/var/log/mysql \
+-v /mydata/mysql/data:/var/data/mysql \
+-v /mydata/mysql/conf:/etc/mysql \
+-e MYSQL_ROOT_PASSWORD=123456 \
+-d mysql:5.7
+
+
+docker run -p 6379:6379 --name redis
+-v /mydata/redis/data:/data
+-v /mydata/redis/conf/redis.conf:/etc/redis/redis.conf
+-d redis:6.2.1 redis-server /etc/redis/redis.conf
+
+
+docker run --name elasticsearch -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" -e ES_JAVA_OPTS="-Xms512m -Xmx1024m" -v /mydata/elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml -v /mydata/elasticsearch/data/:/usr/share/elasticsearch/data -v /mydata/elasticsearch/plugins:/usr/share/elasticsearch/plugins -d elasticsearch:7.4.2
+
+
+docker run --name kibana -e ELASTICSEARCH_HOSTS=http://192.168.31.161:9200 -p 5601:5601 -d kibana:7.4.2
+
+
+docker run -p 80:80 --name nginx \
+> -v /mydata/nginx/html:/usr/share/nginx/html \
+> -v /mydata/nginx/logs:/var/log/nginx/ \
+> -v /mydata/nginx/conf/:/etc/nginx/ \
+> -d nginx:1.10
+
+
+docker run -d --name rabbitmq --publish 5671:5671 --publish 5672:5672 --publish 4369:4369 --publish 25672:25672 --publish 15671:15671 --publish 15672:15672 rabbitmq:management
+
+docker run -d -p 9411:9411 openzipkin/zipkin

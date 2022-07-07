@@ -8,7 +8,6 @@
     <name>gulimall</name>
     <packaging>pom</packaging>
     <description>谷粒商城父工程版本控制</description>
-    
     <modules>
         <module>gulimall-product</module>
         <module>gulimall-order</module>

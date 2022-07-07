@@ -35,6 +35,7 @@ import java.util.stream.Collectors;
 public class SpuInfoServiceImpl extends ServiceImpl<SpuInfoDao, SpuInfoEntity> implements SpuInfoService {
 
 
+
     @Autowired
     SpuInfoDescService spuInfoDescService;
 
